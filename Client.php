@@ -240,7 +240,7 @@ abstract class Client
      * @api
      */
     public function request($method, $uri, array $parameters = array(), array $files = array(), array $server = array(), $content = null, $changeHistory = true)
-    {
+	{
         $uri = $this->getAbsoluteUri($uri);
 
         $server = array_merge($this->server, $server);
@@ -266,7 +266,7 @@ abstract class Client
 
         $response = $this->filterResponse($this->response);
 
-        $this->cookieJar->updateFromResponse($response);
+        $this->cookieJar->updateFromResponse($response, $uri);
 
         $this->redirect = $response->getHeader('Location');
 
